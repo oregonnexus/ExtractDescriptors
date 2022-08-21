@@ -60,7 +60,7 @@ INSERT INTO #EdFiDescriptorsToSynergyLookups VALUES ('WeaponDescriptor', 'K12.Di
 
 
 -- Query synergy lookups with temp table
-SELECT (SELECT ORGANIZATION_NAME FROM rev.REV_ORGANIZATION WHERE PARENT_GU is null), EdFiDescriptor, SynergyLookupNamespace, SynergyLookupCode, lookupvalue.VALUE_GU, lookupvalue.VALUE_CODE, lookupvalue.VALUE_DESCRIPTION, lookupvalue.LIST_ORDER, lookupvalue.YEAR_START, lookupvalue.YEAR_END, lookupvalue.ALT_CODE_2, lookupvalue.ALT_CODE_3
+SELECT (SELECT ORGANIZATION_NAME FROM rev.REV_ORGANIZATION WHERE PARENT_GU is null) as District, EdFiDescriptor, SynergyLookupNamespace, SynergyLookupCode, lookupvalue.VALUE_GU, lookupvalue.VALUE_CODE, lookupvalue.VALUE_DESCRIPTION, lookupvalue.LIST_ORDER, lookupvalue.YEAR_START, lookupvalue.YEAR_END, lookupvalue.ALT_CODE_2, lookupvalue.ALT_CODE_3
 FROM #EdFiDescriptorsToSynergyLookups edfimap
 JOIN rev.REV_BOD_LOOKUP_DEF lookupdef ON edfimap.SynergyLookupNamespace = lookupdef.LOOKUP_NAMESPACE AND edfimap.SynergyLookupCode = lookupdef.LOOKUP_DEF_CODE
 JOIN rev.REV_BOD_LOOKUP_VALUES lookupvalue ON lookupvalue.LOOKUP_DEF_GU = lookupdef.LOOKUP_DEF_GU
